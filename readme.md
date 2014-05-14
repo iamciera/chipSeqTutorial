@@ -28,15 +28,16 @@ We will identify PIF4 binding sites in this lab using the ChIP‐seq data descri
 - **Output from running `macs callpeak` on `PIF4_ChiPSeq.bam` and `Col-0_ChiPSeq.bam` (control)** 
 `PIF4_macs2_peaks.bed`: Peaks found, which are ranges of overlapping reads.
 `PIF4_macs2_summits.bed`: Summits found, which are the single nucleotide tips of these peak ranges.
-`PIF4_macs2_peaks.xls`: Contains all the peaks, description of all parameters used for peakfinder.  **FIX** 
+`PIF4_macs2_peaks.xls`: Contains a lot of information including all the peaks, description of all parameters used for peakfinder, and much more.  
 
 - **Obtained from TAIR**
 `TAIR10_genes.bed`: Coordinates of annotated genes.
 `TAIR10_TSS.bed`: Coordinates of Annotated Gene Transcription Start Sites.
-`Athaliana_167.fa`: *Arabidopsis thaliana* genome sequence.
+`Athaliana_167.fa`: *Arabidopsis thaliana* genome sequence. 
 `Ath.genome.txt`: Chromosome lengths. 
 
-
+- **Larger Files Download from Dropbox**
+[PIF4_ChiPSeq.bam, PIF4_ChiPSeq.bam, and AThaliana_167][https://www.dropbox.com/s/bwpct0u0h5w9uof/wetransfer-02a16b.zip]
 -------
 
 ##Module 1: Identifying DNA sequences Bound by PIF4 in planta
