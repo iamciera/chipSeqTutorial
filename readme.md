@@ -37,7 +37,7 @@ We will identify PIF4 binding sites in this lab using the ChIP‐seq data descri
 `Ath.genome.txt`: Chromosome lengths. 
 
 - **Larger Files Download from Dropbox**
-[PIF4_ChiPSeq.bam, PIF4_ChiPSeq.bam, and AThaliana_167][https://www.dropbox.com/s/bwpct0u0h5w9uof/wetransfer-02a16b.zip]
+[PIF4_ChiPSeq.bam, PIF4_ChiPSeq.bam, and Athaliana_167](https://www.dropbox.com/s/bwpct0u0h5w9uof/wetransfer-02a16b.zip)
 -------
 
 ##Module 1: Identifying DNA sequences Bound by PIF4 in planta
