@@ -25,20 +25,20 @@ We will identify PIF4 binding sites in this lab using the ChIP‐seq data descri
 
 ##Required Files
 
-File bundle can be [downloaded here](https://github.com/iamciera/chipSeqTutorial/blob/master/requiredFiles.zip). Click "Raw" button.
+**ATTENTION BIS180L** You can download all the files you need for this tutorial as a .zip file in smartsite. `Unit 6 > requiredFiles_smartsite.zip`.
 
-- **Output from running `macs callpeak` on `PIF4_ChiPSeq.bam` and `Col-0_ChiPSeq.bam` (control)** 
-`PIF4_macs2_peaks.bed`: Peaks found, which are ranges of overlapping reads.</br>
-`PIF4_macs2_summits.bed`: Summits found, which are the single nucleotide tips of these peak ranges.</br>
-`PIF4_macs2_peaks.xls`: Contains a lot of information including all the peaks, description of all parameters used for peakfinder, and much more. </br> 
+### File Summary
 
-- **Obtained from TAIR**
-`TAIR10_genes.bed`: Coordinates of annotated genes.</br>
-`TAIR10_TSS.bed`: Coordinates of Annotated Gene Transcription Start Sites.</br>
-`Ath.genome.txt`: Chromosome lengths. </br>
+**Output from running `macs callpeak` on `PIF4_ChiPSeq.bam` and `Col-0_ChiPSeq.bam` (control)** 
+-   `PIF4_macs2_peaks.bed`: Peaks found, which are ranges of overlapping reads.</br>
+-   `PIF4_macs2_summits.bed`: Summits found, which are the single nucleotide tips of these peak ranges.</br>
+-   `PIF4_macs2_peaks.xls`: Contains a lot of information including all the peaks, description of all parameters used for peakfinder, and much more. </br> 
 
-*this file is too large to be uploaded to Github*
-`Athaliana_167.fa`: *Arabidopsis thaliana* genome sequence. </br>
+**Obtained from TAIR**
+-   `TAIR10_genes.bed`: Coordinates of annotated genes.
+-   `TAIR10_TSS.bed`: Coordinates of Annotated Gene Transcription Start Sites.
+-   `Ath.genome.txt`: Chromosome lengths. 
+-   `Athaliana_167.fa`: *Arabidopsis thaliana* genome sequence.
 
 - **Files needed for step one** *files are given above.  No need to download these unless you really want to try with the raw data*
 
