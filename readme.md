@@ -38,11 +38,11 @@ We will identify PIF4 binding sites in this lab using the ChIP‐seq data descri
 -   `TAIR10_genes.bed`: Coordinates of annotated genes.
 -   `TAIR10_TSS.bed`: Coordinates of Annotated Gene Transcription Start Sites.
 -   `Ath.genome.txt`: Chromosome lengths. 
--   `Athaliana_167.fa`: *Arabidopsis thaliana* genome sequence.
+-   `Athaliana_167.fa`: *Arabidopsis thaliana* genome sequence. This file is too large for Github, but can also be downloaded here [https://www.dropbox.com/s/d3ts7qrb136b7ql/Athaliana_167.fa](https://www.dropbox.com/s/d3ts7qrb136b7ql/Athaliana_167.fa).  If you downloaded the requiredfiles.zip file from smartsite, it is included in the file. 
 
-- **Files needed for step one** *files are given above.  No need to download these unless you really want to try with the raw data*
+**Files needed for step one** *files are given above.  No need to download these unless you really want to try with the raw data*
 
-[PIF4_ChiPSeq.bam, PIF4_ChiPSeq.bam, and Athaliana_167](https://www.dropbox.com/s/bwpct0u0h5w9uof/wetransfer-02a16b.zip)
+From Dropbox: [PIF4_ChiPSeq.bam, PIF4_ChiPSeq.bam, and Athaliana_167](https://www.dropbox.com/s/bwpct0u0h5w9uof/wetransfer-02a16b.zip)
 
 -------
 
@@ -65,8 +65,6 @@ Second, PIF4 is a DNA sequence‐specific binding protein. If the ChIP‐seq exp
 **Attention BIS180L - You will not be running the first command because of file input size and computational time.** 
 
 1. Use the `callpeak` function to identify PIF4 binding sites. You must designate your treatment and your control.
-
-    FILES NEEDED: `PIF4_ChiPSseq.bam` and `Col-0_ChiPSeq.bam`  
     
         macs callpeak -t PIF4_ChiPSeq.bam -c Col-0_ChiPSeq.bam -n PIF4 -g 1.118e8 -q 0.05
 
@@ -100,7 +98,7 @@ Now we are going to use the [BEDTOOLS](http://bedtools.readthedocs.org/en/latest
 
     To get rid of them type command below. Where `<Ctrl-V>` is literally holding down `ctrl` and pressing `V`.  Same with `<Ctrl-M>`.
         
-        :%S/<ctrl-V><Ctrl-M>//g 
+        :%s/<Ctrl-V><Ctrl-M>//g 
 
     To save and quit type
 
@@ -108,7 +106,7 @@ Now we are going to use the [BEDTOOLS](http://bedtools.readthedocs.org/en/latest
 
 3.  Now let's do some visualization.  Make a histogram of the  `closestSummitsOut.bed` file generated in step 1.  We want to get an idea of how far from the start codon of a gene is PIF4 binding.
     
-    a.  Upload `closestSummitsOut.bed` into R.
+    a.  Upload `closestSummitsOut.bed` into R. Use `read.table()` and set header to false.
 
     b.  Make sure you understand the columns. In this case V12 is the distance from the transcription start site. 
 
@@ -116,13 +114,13 @@ Now we are going to use the [BEDTOOLS](http://bedtools.readthedocs.org/en/latest
 
 ###Questions
 
-**Question #1‐5**: Where are most PIF4 binding sites relative to the TSS? Explain whether the distribution of binding site is what you would expect of a transcription factor.
+**Question #1‐5**: Where are most PIF4 binding sites relative to the Transcription Start Site (TSS)? Explain whether the distribution of binding site is what you would expect of a transcription factor.
 
 **Question #1‐6**: In Module 8, you will identify genes whose transcription is thought to be directly regulated by PIF4. Based on the distribution obtained here, specify the maximum distance that a gene directly regulated by PIF is likely to be from the PIF4 binding site.
 
 ##Exercise #3: Identify consensus sequence for regions bound by PIF4
 
-1. Use the `fastaFromBed` toolfrom bedtools to extract the DNA sequences of your PIF4 binding sites.  This tool will extract the sequence for the genomic intervals specified in the peak.bed files (and also the random peak file they will generate with the following tool) and return a fasta format file. (using your `PIF4_macs2_peaks.bed` file and the genome sequence file `Athaliana_167.fa)`. This analysis will produce a .fasta file containing the nucleotide sequences of all of the regions bound by PIF4 in this experiment. 
+1. Use the `fastaFromBed` tool from bedtools to extract the DNA sequences of your PIF4 binding sites.  This tool will extract the sequence for the genomic intervals specified in the peak.bed files (and also the random peak file they will generate with the following tool) and return a fasta format file. (using your `PIF4_macs2_peaks.bed` file and the genome sequence file `Athaliana_167.fa)`. This analysis will produce a .fasta file containing the nucleotide sequences of all of the regions bound by PIF4 in this experiment. 
 
         fastaFromBed -fi Athaliana_167.fa -bed PIF4_macs2_peaks.bed -fo peakSeq.fa
 
@@ -158,21 +156,28 @@ We will then compare the list of genes bound by PIF4 with the lists of genes tha
 
 2. You will obtain a file that lists for each peak 1) the coordinates and the gene ID of the closest gene and 2) the distance (in bp) that separates the peak from the gene. (A distance of 0 means the peak and the overlap by at least 1 bp. The distance given can be from the 5’ or 3’ end of a gene.)
 
-3. In Question #1‐6, you specified the maximum distance that a gene directly regulated by PIF is likely to be from a PIF4 binding site. Use this distance and sort using the `order()` function in R to generate a list of genes that are specifically associated with PIF4 binding sites. Designate this file as the “PIF4‐bound” gene list. Download this file to your Desktop, and remove duplicates from the "AGI" column with the `duplicated()` function in R. 
+3. In Question #1‐6, you specified the maximum distance that a gene directly regulated by PIF is likely to be from a PIF4 binding site. Use this distance and sort using the `subset()` function in R to generate a list of genes that are specifically associated with PIF4 binding sites. *don't forget to check for `^M`s when loading the file*
+4. Designate this file as the “PIF4‐bound” **gene list**. Remove duplicates from the "AGI" column with the `duplicated()` and `unique()` functions in R. 
 
-4. Identify genes that are direct targets of PIF transcription factors.
+**How to use on `duplicated()` in this context.
+    a.  Check out this small summary of the funtions: [http://www.cookbook-r.com/Manipulating_data/Finding_and_removing_duplicate_records/](http://www.cookbook-r.com/Manipulating_data/Finding_and_removing_duplicate_records/)
+    b.  Ask what if there are duplicates in the gene column (V9) and see the dimentsions of the file to get an idea of how large it is.
+        duplicated(dataframe$V9)
+        dim(dataframe)
+    c.  Now we want to specify to remove the duplicates, this gets a little tricky, but make sure you understand what is going on.
+        uniqueDataframe <- subset(dataframe,!duplicated(dataframe[,9]))
+    d. Now double check this auctually did something by checking the dimensions of new dataframe. 
+    e.  Does this make sense? Why couldn't we just use the `unique()` function?
 
-    a.  Create separate lists of genes that are upregulated and downregulated in the pifq mutant using the fold‐change and FDR that you consider to be most relevant. You need to convert the Transcript IDs to the Gene Locus IDs, you need to have the same notation for both. **CHECK TO MAKE SURE THIS MAKES SENSE.**
+5. Identify genes that are direct targets of PIF transcription factors.
 
-    b.   Using the web‐based tool Venny [http://bioinfogp.cnb.csic.es/tools/venny/](http://bioinfogp.cnb.csic.es/tools/venny/), identify genes that are in both the “PIF4 bound” and “Upregulated” gene lists. Repeat for the “Downregulated” gene list. **USE R?**
+    a.  Create separate lists of genes that are upregulated and downregulated in the pifq mutant using the fold‐change and FDR that you consider to be most relevant. *Use table generated in previous lab*. 
 
-    c.  Determine whether PIF‐regulated genes are overrepresented in the list of PIF4 bound genes. Use the following website to determine the representation factor and the p value for the overlap between PIF4 bound and Upregulated in pifq and between PIF4 bound and Downregulated in pifq. There are 33,602 genes in the Arabidopsis genome. [http://www.nemates.org/MA/progs/overlap_stats.html](http://www.nemates.org/MA/progs/overlap_stats.html)  (note: read the details of the calculation of the representation factor and p value.)
+    b.   Using the web‐based tool Venny [http://bioinfogp.cnb.csic.es/tools/venny/](http://bioinfogp.cnb.csic.es/tools/venny/), identify genes that are in both the “PIF4 bound” and “Upregulated” gene lists. Repeat for the “Downregulated” gene list. 
 
 ###Questions
 
 **Question #2‐1**: Why is it necessary to know the sites in genome that are bound by a transcription factor to identify direct target genes?
-
-**Question #2‐2**: If the PIF‐regulated genes are NOT transcriptionally regulated by the PIF transcription factor, calculate the number of PIF‐upregulated genes that might be expected to be bound by PIF4 by random chance. Repeat this calculation for the number of PIF‐ downregulated genes that would be expected to be bound by PIF4. How do these numbers compare with the actual number of PIF‐regulated genes that are bound by PIF4? Relate these numbers to the representation factors and p value obtained from the hypergeometric distribution analysis.
 
 **Question #2‐3**: Discuss the significance of the over‐ or under‐ representation of PIF‐regulated genes that are bound by PIF4. Based on the results, speculate on whether PIF4 more likely to activate or repress genes in wild‐type plants.
 
