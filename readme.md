@@ -159,7 +159,8 @@ We will then compare the list of genes bound by PIF4 with the lists of genes tha
 3. In Question #1‐6, you specified the maximum distance that a gene directly regulated by PIF is likely to be from a PIF4 binding site. Use this distance and sort using the `subset()` function in R to generate a list of genes that are specifically associated with PIF4 binding sites. *don't forget to check for `^M`s when loading the file*
 4. Designate this file as the “PIF4‐bound” **gene list**. Remove duplicates from the "AGI" column with the `duplicated()` and `unique()` functions in R. 
 
-**How to use on `duplicated()` in this context**
+<hr/>
+####How to use on `duplicated()` in this context**
 1.  Check out this small summary of the funtions: [http://www.cookbook-r.com/Manipulating_data/Finding_and_removing_duplicate_records/](http://www.cookbook-r.com/Manipulating_data/Finding_and_removing_duplicate_records/)
 
 2.  Ask what if there are duplicates in the gene column (V9) and see the dimentsions of the file to get an idea of how large it is.
@@ -175,11 +176,13 @@ We will then compare the list of genes bound by PIF4 with the lists of genes tha
     
 5.  Does this make sense? Why couldn't we just use the `unique()` function?
 
-5. Identify genes that are direct targets of PIF transcription factors.
+6. Identify genes that are direct targets of PIF transcription factors.
 
-    a.  Create separate lists of genes that are upregulated and downregulated in the pifq mutant using the fold‐change and FDR that you consider to be most relevant. *Use table generated in previous lab*. 
+<hr/>
 
-    b.   Using the web‐based tool Venny [http://bioinfogp.cnb.csic.es/tools/venny/](http://bioinfogp.cnb.csic.es/tools/venny/), identify genes that are in both the “PIF4 bound” and “Upregulated” gene lists. Repeat for the “Downregulated” gene list. 
+1.  Create separate lists of genes that are upregulated and downregulated in the pifq mutant using the fold‐change and FDR that you consider to be most relevant. *Use table generated in previous lab*. 
+
+2.   Using the web‐based tool Venny [http://bioinfogp.cnb.csic.es/tools/venny/](http://bioinfogp.cnb.csic.es/tools/venny/), identify genes that are in both the “PIF4 bound” and “Upregulated” gene lists. Repeat for the “Downregulated” gene list. 
 
 ###Questions
 
