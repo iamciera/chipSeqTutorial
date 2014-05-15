@@ -159,15 +159,21 @@ We will then compare the list of genes bound by PIF4 with the lists of genes tha
 3. In Question #1‐6, you specified the maximum distance that a gene directly regulated by PIF is likely to be from a PIF4 binding site. Use this distance and sort using the `subset()` function in R to generate a list of genes that are specifically associated with PIF4 binding sites. *don't forget to check for `^M`s when loading the file*
 4. Designate this file as the “PIF4‐bound” **gene list**. Remove duplicates from the "AGI" column with the `duplicated()` and `unique()` functions in R. 
 
-**How to use on `duplicated()` in this context.
-    a.  Check out this small summary of the funtions: [http://www.cookbook-r.com/Manipulating_data/Finding_and_removing_duplicate_records/](http://www.cookbook-r.com/Manipulating_data/Finding_and_removing_duplicate_records/)
-    b.  Ask what if there are duplicates in the gene column (V9) and see the dimentsions of the file to get an idea of how large it is.
+**How to use on `duplicated()` in this context**
+1.  Check out this small summary of the funtions: [http://www.cookbook-r.com/Manipulating_data/Finding_and_removing_duplicate_records/](http://www.cookbook-r.com/Manipulating_data/Finding_and_removing_duplicate_records/)
+
+2.  Ask what if there are duplicates in the gene column (V9) and see the dimentsions of the file to get an idea of how large it is.
+    
         duplicated(dataframe$V9)
         dim(dataframe)
-    c.  Now we want to specify to remove the duplicates, this gets a little tricky, but make sure you understand what is going on.
+
+3.  Now we want to specify to remove the duplicates, this gets a little tricky, but make sure you understand what is going on.
+    
         uniqueDataframe <- subset(dataframe,!duplicated(dataframe[,9]))
-    d. Now double check this auctually did something by checking the dimensions of new dataframe. 
-    e.  Does this make sense? Why couldn't we just use the `unique()` function?
+    
+4. Now double check this auctually did something by checking the dimensions of new dataframe. 
+    
+5.  Does this make sense? Why couldn't we just use the `unique()` function?
 
 5. Identify genes that are direct targets of PIF transcription factors.
 
