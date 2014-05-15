@@ -183,7 +183,7 @@ We will then compare the list of genes bound by PIF4 with the lists of genes tha
 
 **Question #2‐4**: What do the results suggest about the role of the direct target genes of PIFs in controlling hypocotyls elongation?
 
-**DUE DATE**: 
+
 
 
 
