@@ -88,11 +88,25 @@ Second, PIF4 is a DNA sequence‐specific binding protein. If the ChIP‐seq exp
 
 Now we are going to use the [BEDTOOLS](http://bedtools.readthedocs.org/en/latest/), a powerful suite of tools to deal with genomic data.  We want to know what genomic regions are closest to the peaks found earlier.  In order to accomplish this we will use the `bedtools closest` function.  First look at the usage manual page by typing `bedtools closest` and read about the general usage of the tool. 
 
-1.  Run the closestBed function using the `PIF4_macs2_summits.bed` and the `TAIR10_TSS.bed file`, which will give you an idea of where the summits are in relation to the transcription start sites. Consult the usage manual and make notes on what the below command is doing. 
+1.  Sometimes files are not formatted exactly how you want them, especially when changing between different operating systems.  You can get inserts symbols that you can't necessarily see unless you look for them.  For instance when working with MACS2, sometimes it inserts these pesky `^M`s which cause line breaks in the wrong places. Want to see them?  Use the text editor `Vim`
 
-        bedtools closest -D "b" -a PIF4_macs2_summits.bed -b TAIR10_TSS.bed > closestSummitsOut.bed 
+        vi -b TAIR10_TSS.bed
 
-2. This creates `closestSummitsOut.bed`, but it sometimes it inserts these pesky `^M`s which cause line breaks in the wrong places. Want to see them?  Use the text editor `Vim`.
+    To get rid of them type the command below. Where `<Ctrl-V>` is literally holding down `ctrl` and pressing `V`.  Same with `<Ctrl-M>`.
+        
+        :%s/<Ctrl-V><Ctrl-M>//g 
+
+    To save and quit type
+
+        :wq
+
+    Check the `PIF4_macs2_summits.bed` file too.  Are they there? Without checking for these, the output can be wrong.  How do you know when it will mess up your results? You have to just be hyper aware of formatting inputs and outputs of the program you are using.  In future work: always refer to manuals and check files, run them with and without formatting differences and see if this changes your results. 
+
+2.  Now you can run the closestBed function using the `PIF4_macs2_summits.bed` and the `TAIR10_TSS.bed file`, which will give you an idea of where the summits are in relation to the transcription start sites. Consult the usage manual and make notes on what the below command is doing. 
+    
+    bedtools closest -D "b" -a PIF4_macs2_summits.bed -b TAIR10_TSS.bed > closestSummitsOut.bed 
+
+3. This creates `closestSummitsOut.bed`.
 
         vi -b closestSummitsOut.bed
 
@@ -104,7 +118,7 @@ Now we are going to use the [BEDTOOLS](http://bedtools.readthedocs.org/en/latest
 
         :wq
 
-3.  Now let's do some visualization.  Make a histogram of the  `closestSummitsOut.bed` file generated in step 1.  We want to get an idea of how far from the start codon of a gene is PIF4 binding.
+4.  Now let's do some visualization.  Make a histogram of the  `closestSummitsOut.bed` file generated in step 1.  We want to get an idea of how far from the start codon of a gene is PIF4 binding.
     
     a.  Upload `closestSummitsOut.bed` into R. Use `read.table()` and set header to false.
 
