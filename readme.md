@@ -1,4 +1,4 @@
-##Lab 4: Using Chromatin Immunoprecipitation – DNA Sequencing Data to Identify Genes Directly Regulated by Phytochrome Interacting Factors.
+## Lab 4: Using Chromatin Immunoprecipitation – DNA Sequencing Data to Identify Genes Directly Regulated by Phytochrome Interacting Factors.
 
 In the past three labs, we have analyzed data that has helped us to address the following biological questions.
 
@@ -15,7 +15,7 @@ Sites in the genome that are bound by a specific DNA binding protein in vivo can
 We will identify PIF4 binding sites in this lab using the ChIP‐seq data described in the Oh et al. (Nature Cell Biol. 14: 802) paper. Be sure to include in your lab report the genotypes of the plants and the antibody that was used for the ChIP experiments. The ChIP‐seq data will be analyzed using the computational tool, Model‐based Analysis for ChIP Seq (MACS; Genome Biol. 9: R137; [http://liulab.dfci.harvard.edu/MACS/](http://liulab.dfci.harvard.edu/MACS/)). A variety of other computational tools will be used to analyze the ChIP‐seq data.
 
 
-###There are five primary objectives of this lab.
+### There are five primary objectives of this lab.
 
 1. Identify PIF4 binding sites using MACS.
 2. Analyze the distribution of binding sites relative to the transcription start sites of genes.
@@ -23,7 +23,7 @@ We will identify PIF4 binding sites in this lab using the ChIP‐seq data descri
 4. Associate binding sites with genes.
 5. Identify genes directly regulated by PIF transcription factors.
 
-##Required Files
+## Required Files
 
 **ATTENTION BIS180L** You can download all the files you need for this tutorial as a .zip file in smartsite. `Unit 6 > requiredFiles_smartsite.zip`.
 
@@ -46,7 +46,7 @@ From Dropbox: [PIF4_ChiPSeq.bam, PIF4_ChiPSeq.bam, and Athaliana_167](https://ww
 
 -------
 
-##Module 1: Identifying DNA sequences Bound by PIF4 in planta
+## Module 1: Identifying DNA sequences Bound by PIF4 in planta
 
 PIFs are basic helix‐loop‐helix transcription factors that bind with specific DNA sequence motifs to activate or repress the transcription of genes. In this module, we will analyze the ChIP‐seq data from Oh et al. paper using MACS to identify statistically‐significantly bound regions by PIF4. The numbers of reads from this dataset are given below. Col‐0 ChIP seq is the control.
 
@@ -60,7 +60,7 @@ Once PIF4 binding sites have been identified, we will use two tests to assess th
 
 Second, PIF4 is a DNA sequence‐specific binding protein. If the ChIP‐seq experiments are valid, the expectation is that a specific DNA motif will be enriched in the PIF4 bound regions. We will use a de novo motif finder, MEME‐ChIP ([http://meme.nbcr.net/meme/cgi‐bin/meme‐chip.cgi](http://meme.nbcr.net/meme/cgi‐bin/meme‐chip.cgi)) to identify a consensus binding sequence for PIF 4.
 
-##Exercise #1: Identify PIF4 binding sites (designated “peaks” by MACS).
+## Exercise #1: Identify PIF4 binding sites (designated “peaks” by MACS).
 
 **Attention BIS180L - You will not be running the first command because of file input size and computational time.** 
 
@@ -84,7 +84,7 @@ Second, PIF4 is a DNA sequence‐specific binding protein. If the ChIP‐seq exp
 
 **Question #1‐4**: Discuss how the p‐value, the q‐value, and the fold‐enrichment for the binding sites relate to each other. Examine information in `PIF4_macs2_peaks.xls` file.
 
-##Exercise #2: Analyze the distribution of PIF4 binding sites relative to the transcription start site of genes
+## Exercise #2: Analyze the distribution of PIF4 binding sites relative to the transcription start site of genes
 
 Now we are going to use the [BEDTOOLS](http://bedtools.readthedocs.org/en/latest/), a powerful suite of tools to deal with genomic data.  We want to know what genomic regions are closest to the peaks found earlier.  In order to accomplish this we will use the `bedtools closest` function.  First look at the usage manual page by typing `bedtools closest` and read about the general usage of the tool. 
 
@@ -126,13 +126,13 @@ Now we are going to use the [BEDTOOLS](http://bedtools.readthedocs.org/en/latest
 
     c. Make histogram that illustrates where in relation to the transcription start site of genes does are the PIF4 binding summits (center of PIF peaks) are found.
 
-###Questions
+### Questions
 
 **Question #1‐5**: Where are most PIF4 binding sites relative to the Transcription Start Site (TSS)? Explain whether the distribution of binding site is what you would expect of a transcription factor.
 
 **Question #1‐6**: In Module 8, you will identify genes whose transcription is thought to be directly regulated by PIF4. Based on the distribution obtained here, specify the maximum distance that a gene directly regulated by PIF is likely to be from the PIF4 binding site.
 
-##Exercise #3: Identify consensus sequence for regions bound by PIF4
+## Exercise #3: Identify consensus sequence for regions bound by PIF4
 
 1. Use the `fastaFromBed` tool from bedtools to extract the DNA sequences of your PIF4 binding sites.  This tool will extract the sequence for the genomic intervals specified in the peak.bed files (and also the random peak file they will generate with the following tool) and return a fasta format file. (using your `PIF4_macs2_peaks.bed` file and the genome sequence file `Athaliana_167.fa)`. This analysis will produce a .fasta file containing the nucleotide sequences of all of the regions bound by PIF4 in this experiment. 
 
@@ -150,7 +150,7 @@ Now we are going to use the [BEDTOOLS](http://bedtools.readthedocs.org/en/latest
 
 4. Submit the random peak sequences obtained with fasta from bed to MEME‐ChIP.
 
-###Questions
+### Questions
 
 **Question #1‐7**: What is the relationship between the most significant DNA motif discovered and the known binding sites of PIF transcription factors? How does the analysis performed with randomly selected DNA sequences affect your conclusion about the motif discovery experiment?
 
@@ -162,7 +162,7 @@ In the previous exercises, we identified DNA sequences that were bound by PIF4 a
 
 We will then compare the list of genes bound by PIF4 with the lists of genes that are statistically‐significantly differentially expressed, both upregulated and downregulated, in pifq mutants relative to wild type. Tests will be conducted to determine whether a statistically significant number of PIF‐regulated genes are bound by PIF4.
 
-###Exercise #4: Identify genes that are bound by PIF4 and regulated by PIFs.
+### Exercise #4: Identify genes that are bound by PIF4 and regulated by PIFs.
 
 1. Use the `bedtools closest` function with your `PIF4_macs2_peaks.bed` file and the `TAIR10_genes.bed` reference file. This will assign peaks to the closest *A. thaliana* annotated gene.
 
@@ -174,7 +174,7 @@ We will then compare the list of genes bound by PIF4 with the lists of genes tha
 4. Designate this file as the “PIF4‐bound” **gene list**. Remove duplicates from the "AGI" column with the `duplicated()` and `unique()` functions in R. 
 
 <hr/>
-####How to use on `duplicated()` in this context**
+#### How to use on `duplicated()` in this context**
 1.  Check out this small summary of the funtions: [http://www.cookbook-r.com/Manipulating_data/Finding_and_removing_duplicate_records/](http://www.cookbook-r.com/Manipulating_data/Finding_and_removing_duplicate_records/)
 
 2.  Ask what if there are duplicates in the gene column (V9) and see the dimentsions of the file to get an idea of how large it is.
@@ -198,7 +198,7 @@ We will then compare the list of genes bound by PIF4 with the lists of genes tha
 
 6.   Using the web‐based tool Venny [http://bioinfogp.cnb.csic.es/tools/venny/](http://bioinfogp.cnb.csic.es/tools/venny/), identify genes that are in both the “PIF4 bound” and “Upregulated” gene lists. Repeat for the “Downregulated” gene list. 
 
-###Questions
+### Questions
 
 **Question #2‐1**: Why is it necessary to know the sites in genome that are bound by a transcription factor to identify direct target genes?
 
